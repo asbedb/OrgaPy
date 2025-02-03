@@ -90,7 +90,11 @@ def sort():
         print("Invalid Prompt please try again.")
 
 def run():
-    print(f'Set your drive:')
+    print(f'-------------------------------------------------------------------------------------------')
+    print(f'\n\nWelcome to OrgaPy - to get started navigate to your desired directory with the command:')
+    print(f'cd <path>')
+    print(f'see "help" for more information\n\n')
+    print(f'-------------------------------------------------------------------------------------------')
     while True:
         user_input = input(f'OrgaPy {working_dir}> ')
         match user_input.split():
@@ -109,13 +113,13 @@ def run():
                 sort()
             case ["help"]:
                 print(
-                    f'---------------------------'
-                    f'\nList of Commands:\n\n'
+                    f'-------------------------------------------------------------------------------------------'
+                    f'\n\n\List of Commands:\n\n'
                     f'ls - List files in the current directory\n'
                     f'clear - Clear the console\n'
                     f'exit - Exit the program\n'
-                    f'cd <path> - Change to the specified directory (without a path shows the current directory)\n'
-                    f'---------------------------'
+                    f'cd <path> - Change to the specified directory (without a path shows the current directory)\n\n'
+                    f'-------------------------------------------------------------------------------------------'
                 )
             case _:
                 print(f"Unrecognized command: {user_input}")
