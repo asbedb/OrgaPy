@@ -2,7 +2,6 @@ import os
 import shutil
 import platform
 
-root_dir = os.path.abspath(os.sep)
 working_dir = os.getcwd() 
 #to do list - revert option, history, additional analysis (old files etc)
 
