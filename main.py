@@ -119,6 +119,8 @@ def run():
                     f'clear - Clear the console\n'
                     f'exit - Exit the program\n'
                     f'cd <path> - Change to the specified directory (without a path shows the current directory)\n\n'
+                    f'analyze - Looks through folder and provides number of files and space used'
+                    f'sort - Creates and stores files in folder by extension type'
                     f'-------------------------------------------------------------------------------------------'
                 )
             case _:
