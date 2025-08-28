@@ -63,27 +63,21 @@ def sort():
     user_confirmation = input('Are you sure you want to proceed? This action is irreversible. (y/n): ').lower()
     if user_confirmation in ['y', 'yes']:
         print("Proceeding with sorting...")
-        for _, _, filenames in os.walk(working_dir):
-            for filename in filenames:
-                # Get the file extension
-                _, file_extension = os.path.splitext(filename)   
+        for item in os.listdir(working_dir):
+            file_path = os.path.join(working_dir, item)
+            if os.path.isfile(file_path):
+                _, file_extension = os.path.splitext(item)
                 if file_extension:
-                    file_extension_without_period = file_extension.lstrip('.')
-                    folder_name = file_extension_without_period  # Specify your folder name
-                    # Combine the current working directory with the folder name
+                    file_extension_without_period = file_extension.strip('.')
+                    folder_name= file_extension_without_period
                     folder_path = os.path.join(working_dir, folder_name)
-                    # Create the folder (if it doesn't exist)
                     os.makedirs(folder_path, exist_ok=True)
-                    # Construct the full file path
-                    file_path = os.path.join(working_dir, filename)
-                    if os.path.exists(file_path):
-                        # Move the file to the respective folder
-                        destination_path = os.path.join(folder_path, filename)
-                        shutil.move(file_path, destination_path)  # Move the file
-                    
+                    destination_path = os.path.join(folder_path, item)
+                    shutil.move(file_path, destination_path)
+                    print(f'Moved "{item}" to "{folder_name}/"')
+                else:
+                    print(f'Skipped "{item}" (no file extension).')
         print(f'Folders Created/Updated and Files Sorted')
-
-
     elif user_confirmation in ['n','no']:
         print("Action canceled. No files were sorted.")
     else:
@@ -118,10 +112,10 @@ def run():
                     f'ls - List files in the current directory\n'
                     f'clear - Clear the console\n'
                     f'exit - Exit the program\n'
-                    f'cd <path> - Change to the specified directory (without a path shows the current directory)\n\n'
-                    f'analyze - Looks through folder and provides number of files and space used'
-                    f'sort - Creates and stores files in folder by extension type'
-                    f'-------------------------------------------------------------------------------------------'
+                    f'cd <path> - Change to the specified directory (without a path shows the current directory)\n'
+                    f'analyze - Looks through folder and provides number of files and space used\n'
+                    f'sort - Creates and stores files in folder by extension type\n'
+                    f'-------------------------------------------------------------------------------------------\n'
                 )
             case _:
                 print(f"Unrecognized command: {user_input}")
